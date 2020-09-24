@@ -9,11 +9,20 @@ h1 {
 }
 
 .header {
+    text-align: center;
     background-color: #1BD30C;
-    display: flex;
-    justify-content: center;
-    align-items: center;
     height: 100px;
+    position: relative;
+}
+.header__titlte {
+  margin: 0;
+}
+.header a {
+  height: 48px;
+  width: 48px;
+  position: absolute;
+  left: 20px;
+  margin: 0;
 }
 
 
