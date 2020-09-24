@@ -3,6 +3,7 @@ const API = 'https://rickandmortyapi.com/api/character/'
 const btn_verificar = document.querySelector('#verificar')
 const respuesta = document.querySelector('#respuesta')
 const ULTIMO_NIVEL = 5
+const LEVEL = document.querySelector('.header__level--actual')
 
 var secuencia = new Array(10).fill(0).map(n => Math.floor((Math.random() * 617) + 1))
 var nivel = 1
@@ -47,6 +48,7 @@ class juego {
     inicializar() {
         this.mostrarImagen()
         btn_verificar.addEventListener("click", this.verificar)
+        LEVEL.innerHTML = nivel
     }
 
     async mostrarImagen() {
