@@ -2,6 +2,7 @@ var character_img = document.querySelector('#character_img')
 const API = 'https://rickandmortyapi.com/api/character/'
 const btn_verificar = document.querySelector('#verificar')
 const respuesta = document.querySelector('#respuesta')
+const ULTIMO_NIVEL = 5
 
 var secuencia = new Array(10).fill(0).map(n => Math.floor((Math.random() * 617) + 1))
 var nivel = 1
@@ -60,20 +61,41 @@ class juego {
     async verificar() {
       try {
         this.character_name = await obtenerNombrePersonaje(subnivel)
-        console.log(this)
 
         if (this.character_name === respuesta.value || this.character_name.toLowerCase() === respuesta.value) {
-          console.log(`Felicidades haz completado el nivel ${nivel}`);
-          nivel ++
-          subnivel ++
-          respuesta.value = ''
-          this.inicializar()
+          if (nivel < ULTIMO_NIVEL){
+            nivel ++
+            subnivel ++
+            respuesta.value = ''
+            this.nivelCompletado()
+            this.inicializar()
+          } else {
+            this.ganoElJuego()
+          }
         } else {
-          console.log(`Lo siento Haz perdido. El nombre del personaje es ${this.character_name}`)
+          this.perdiste()
         }
       } catch (error) {
-        console.error(error);
+        console.error(error)
       }
+    }
+
+    playAgain() {
+      location.reload()
+    }
+
+    nivelCompletado() {
+      swal('Enhorabuena', `Felicitaciones, has completado el nivel ${subnivel}`, 'success')
+    }
+
+    ganoElJuego() {
+      swal('Haz completado el juego', 'Eres todo un experto de Rick and Morty!', 'success')
+        .then(this.playAgain)
+    }
+
+    perdiste() {
+      swal(':(', `Haz perdido el nombre del personaje es ${this.character_name}`, 'error')
+      .then(this.playAgain)
     }
 }
 
