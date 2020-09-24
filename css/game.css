@@ -6,13 +6,16 @@ h1 {
     font-family: 'Ranchers', cursive;
     font-size: 2.5em;
     letter-spacing: 2px;
+    margin: 0;
 }
 
 .header {
     text-align: center;
+    display: flex;
     background-color: #1BD30C;
     height: 100px;
-    position: relative;
+    justify-content: space-around;
+    align-items: flex-start;
 }
 .header__titlte {
   margin: 0;
@@ -20,9 +23,14 @@ h1 {
 .header a {
   height: 48px;
   width: 48px;
-  position: absolute;
-  left: 20px;
   margin: 0;
+}
+.header__level {
+  display: flex;
+  justify-content: space-between;
+}
+.header__level--actual {
+  margin-left: 10px;
 }
 
 
